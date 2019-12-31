@@ -1,5 +1,11 @@
 {{ define "main" }}
-<a href="/">Home</a>
+<header>
+  <a href="/">Home</a>
+</header>
+<hgroup>
+  <h1>{{ .Title }}</h1>
+  <h4>Last updated on {{ .Lastmod.Format "January 2, 2006" }}</h4>
+</hgroup>
 {{ .Content }}
 <footer>Copyright &copy; 2019 Adam Pickering</footer>
 {{ end}}
