@@ -9,4 +9,7 @@ I'm interested in computers, especially open-source sofware and hardware
 and the social benefits thereof. My other interests include film
 (the interesting kind), rock climbing and cooking.
 
-To contact me, here are the steps you take: ...
+To contact me you can use the email:
+
+"adam", followed by a "k", followed by "pickering",
+followed by "@" and finally followed by "gmail.com".
