@@ -5,6 +5,5 @@ asdfasdf: 2019-12-29T21:15:38-07:00
 draft: false
 ---
 
-[Compositions](/compositions/)  
 [About](/about.html)  
 [Github](https://github.com/adamkpickering/)  
