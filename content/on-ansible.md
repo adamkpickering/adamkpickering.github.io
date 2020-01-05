@@ -78,6 +78,11 @@ AWS sends us back about the servers to an inventory.
 In light of Ansible's traditionally static inventory, this became a problem.
 **insert problems of dynamic inventory here**
 
+**ways in which ansible still was not perfect**
+
+- configuration drift
+  - ultimately a declarative tool means monitoring
+
 Another technological development that occurred after Ansible was released
 was containers. While LXC had existed for a while (**how long?** **cgroups,
 namespaces**), Docker had yet to be released (**when?**).
@@ -111,12 +116,100 @@ What about other cases?
 
 -----
 
-This section has to do with how Ansible's declarative design
-makes it barely useful for the things containers have taken from it.
-Everything else is procedural, for which even shell programming is better.
-Would have been better implemented as a Python library.
+In part I we examined how Ansible was designed to be a declarative
+tool, and how better tools for the declarative paradigm have recently
+emerged. In this part we look at how Ansible might be used to complement
+these tools, as a glue language (same idea as shell).
+We make the assertion that for this type of task,
+Ansible would have better been designed as a Python library.
+Its problems are ones that Python has already so elegantly solved.
+
+## Looping
+
+In any glue language, looping is an important feature.
+We need the ability to perform the exact same procedure to
+a list of similar things in sequence or parallel.
+In Ansible this is done in the following way:
+
+```
+- debug:
+    msg: "{{ looped_var }}"
+  loop:
+    - "hello"
+    - "there"
+    - "world"
+```
+
+Assuming you first learned loops using a traditional C-like language,
+this may look a little strange. But once you understand it, it's pretty
+clear right? The equivalent in Python would be:
+
+```
+vars = ["hello", "there", "world"]
+for var in vars:
+  print(var)
+```
+
+Now, what if we want to run multiple tasks on each iteration
+of the loop? In Ansible:
+
+```
+- set_fact:
+    hello_there_world:
+      - "hello"
+      - "there"
+      - "world"
+
+- debug:
+    msg: "debug 1: {{ looped_var }}"
+  loop: "{{ hello_there_world }}"
+
+- debug:
+    msg: "debug 2: {{ looped_var }}"
+  loop: "{{ hello_there_world }}"
+```
+
+In Python:
+
+```
+vars = ["hello", "there", "world"]
+for var in vars:
+  print("debug 1: {}".format(var))
+for var in vars:
+  print("debug 2: {}".format(var))
+```
+
+We're starting to see that Python is both more readable and more concise.
+Another example, in Ansible:
+
+```
+ansible
+```
+
+And in Python:
+
+```
+python
+```
+
+- if statements
+  - if statements done in jinja2? If so, what is the relative value of
+    learning Jinja2 versus learning Python if statements?
+- code encapsulation (roles are not great)
+- dependency management
+  - local modules
+  - unexpected dependencies of modules (credstash)
+- error messages suck
+- where YAML + Jinja2 was a boon for declarative,
+  it sucks for procedural (readability)
+- working with structured data
+- lack of unit testing
+
+example: credstash, pulling in a secret to use
 
 "three or four layers of indirection deep makes it suck"
+
+-----
 
 Rather than basing it on an
 existing programming language, or writing a new language,
