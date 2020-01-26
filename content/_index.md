@@ -7,3 +7,5 @@ draft: false
 
 [About](/about.html)  
 [Github](https://github.com/adamkpickering/)  
+
+[On Ansible](/on-ansible.html)
