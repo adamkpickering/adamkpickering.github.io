@@ -46,12 +46,12 @@ As we can see, a computer system is a highly dynamic environment.
 Things inevitably change, and we want to be able to enforce a certain state
 at the touch of a button. That is, we want a *declarative* tool.
 This is the mindset under which Ansible seems to have been created.
-If you stick to this mindset, Ansible is pretty good.
+If you stick to this mindset, Ansible can work pretty well.
 If your automation consists simple cases such as:
 
-1. making sure certain files are filled out and and in a certain place
-2. making sure certain services are started
-3. making sure specific applications are installed
+1. ensuring certain files are filled out and and in a specific place
+2. ensuring services are started
+3. ensuring applications are installed
 
 then Ansible is great, and should be reliable. That is, with a couple caveats:
 
@@ -68,7 +68,7 @@ doing things manually or writing a shell script. Or using Chef.
 Or Puppet.
 
 But the industry developed. Cloud platforms became a big deal.
-All of a sudden, people wanted to provision servers on these platforms.
+With this development, people wanted to provision servers on these platforms.
 It seems like a simple task with Ansible. Just run a couple of tasks right?
 But to truly fit with Ansible's model, this requires that we create
 our virtual servers, and then (since there are pieces of information
@@ -118,11 +118,16 @@ What about other cases?
 
 In part I we examined how Ansible was designed to be a declarative
 tool, and how better tools for the declarative paradigm have recently
-emerged. In this part we look at how Ansible might be used to complement
-these tools, as a glue language (same idea as shell).
-We make the assertion that for this type of task,
-Ansible would have better been designed as a Python library.
-Its problems are ones that Python has already so elegantly solved.
+emerged. As we discussed (**check**), design decisions were made that
+optimized it for the declarative paradigm; these decisions include
+the use of YAML and Jinja2 as a basis for the language. As we show
+in this part, these design decisions result in problems such as
+poor readablilty and debuggability when one must step outside of
+the declarative paradigm into the procedural paradigm. I make the
+assertion that, given how common it is to need to do procedural things,
+Ansible would have been better written as a Python library,
+given that Python already excels at this type of task.
+
 
 ## Looping
 
@@ -133,7 +138,7 @@ In Ansible this is done in the following way:
 
 ```
 - debug:
-    msg: "{{ looped_var }}"
+    msg: "{{ item }}"
   loop:
     - "hello"
     - "there"
@@ -161,11 +166,11 @@ of the loop? In Ansible:
       - "world"
 
 - debug:
-    msg: "debug 1: {{ looped_var }}"
+    msg: "debug 1: {{ item }}"
   loop: "{{ hello_there_world }}"
 
 - debug:
-    msg: "debug 2: {{ looped_var }}"
+    msg: "debug 2: {{ item }}"
   loop: "{{ hello_there_world }}"
 ```
 
@@ -192,6 +197,21 @@ And in Python:
 python
 ```
 
+
+## Error Messages
+
+Another place that Ansible falls flat is in the case of error messages.
+But before we discuss error messages, we must understand how modules work.
+
+In Ansible, a module is simply a script. There are two options when
+writing a module:
+
+1. write it in python and integrate it with ansible
+2. write it so that it is literally any language that can produce an
+   executable file/script (referred to as a local module)
+
+In
+
 - if statements
   - if statements done in jinja2? If so, what is the relative value of
     learning Jinja2 versus learning Python if statements?
@@ -199,7 +219,6 @@ python
 - dependency management
   - local modules
   - unexpected dependencies of modules (credstash)
-- error messages suck
 - where YAML + Jinja2 was a boon for declarative,
   it sucks for procedural (readability)
 - working with structured data
