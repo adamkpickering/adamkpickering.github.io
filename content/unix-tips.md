@@ -71,6 +71,9 @@ mnemonic there. I will leave it to you to discover them.
   - datetime formatting
   - C style string formatting
   - argument conventions with shell commands (-a -> all; -n -> number etc)
+    - there is a link to this somewhere
+  - backus-naur
+  - docopt
 
 - Knowing about the documentation is vital for any pursuit, especially computers.
   On Unix the dominant way of documenting the Unix-philosophy-adhering tools
