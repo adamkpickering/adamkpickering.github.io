@@ -6,68 +6,72 @@ draft: true
 
 If you're reading this, you're probably interested in Unix.
 Or more likely Linux, which is of course a descendant of Unix.
-Congratulations - Unix is not only what I believe to be the
-oldest technical tradition in computing, but also the dominant one.
-An understanding of Linux, and Unix, is very handy
-in today's computerized world.
+Congratulations - Unix is both the oldest technical tradition
+in computing, and the dominant one. An understanding of Linux,
+and Unix, is very handy in today's computerized world,
+and you'll be better for having it.
 
-There are good reasons for Unix's success. Other than its popularity,
-it emphasizes practicality and usability over elegance and feature
-completeness. It is meant to be *used*, not to be a collection
-of supposedly perfect abstractions. But this comes at a price:
-as a newbie to the world of Unix might ask, how did all of this get
-here? Why are these programs named what they are?
-Where do I start learning about all of this?
-
-Indeed, getting started can be difficult. But don't get discouraged!
-As I have gone through the process of learning about Unix,
-I've picked up a few tricks. The purpose of this page is to
-compile them, so that others might benefit. Enjoy!
+But Unix is more of a toolkit than it is a complete, functioning system.
+On one hand, this buys its users power and flexibility.
+But on the other hand, this gives it a steep learning curve.
+Newbies can have a hard time figuring out how things are done in the Unix
+world. But don't get discouraged! As I have learned (and continue to learn)
+about Unix, I've noticed things that would have made the path easier had I known
+them to begin with. I've recorded them here so that others might benefit.
 
 
 ## Read *The Art of Unix Programming*
 
-[The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/)
+[The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/),
+which is available for free online,
 is an excellent book for those looking to learn about Unix.
-Despite its age (it came out in 2003), it gives
-the reader a good idea of what the oft-referred-to "Unix philosophy" is.
+While it is a very old book as books on computing go (it came out in 2003)
+its focus on concepts, rather than details, means that the ideas are
+just as relevant as they were at the time of release. Some may find it dry,
+but there is no better introduction to the world of Unix.
 
-In part I *The Art of Unix Programming* first gives a history of Unix -
+In part I *The Art of Unix Programming* first gives a history of Unix.
 I believe that knowing the history is an important, but often-overlooked,
-prerequisite to expertise in a technical field. It provides a foundation
-for the knowledge that is directly useful today. It allows one
-to understand why things are the way they are, and not some other way.
-*TAoUP*'s treatment of the history is adequate.
+prerequisite to expertise in a technical field - it gives you an awareness
+of why things are the way they are, and might help you avoid mistakes
+that others have made. Of course, *TAoUP* only covers the history up to 2003.
+Personally I am not aware of a source which covers the history since then,
+and have learned it from a variety of blog posts, articles etc.
+You can do the same - some topics that you might look into are the `systemd`
+controversy, the jump to mobile (via Android), the continued lack of adoption
+of Unix on the desktop, and containers.
 
 Part II is about the design choices that were made in Unix.
 This part is great for getting you to think critically about
 why Unix is the way it is, and why it is so successful.
-It introduces you to the famous "Unix philosophy".
-It discusses design patterns that you'll find in the Unix world.
+It introduces you to the famous "Unix philosophy", and
+discusses design patterns that you'll find in the Unix world.
+Finally it introduces you to
+[argument naming conventions](http://catb.org/~esr/writings/taoup/html/ch10s05.html),
+which are helpful as a mnemonic device.
 
 Part III gives some general knowledge about software. This part is largely
 out of date, with the exception being chapter 16, which provides
-a convincing argument on why you, as a software user and developer,
-should gravitate towards open-source software.
+a convincing argument on why you, a software user and developer,
+should prefer open-source software whenever you have the choice.
 
-Finally, Part IV discusses community, the reason for Unix's existence.
-Unix is intimately tied to the open-source world, and always has been.
-Also standards, and their importance. Finally it discusses
+Finally, Part IV discusses the Unix community, which is an important
+but easily-overlooked part of the picture. It also discusses
+standards, and their importance. Finally it discusses
 why Unix is still around in its present format, and why it hasn't
 been replaced by anything that has been developed since.
 
-*TAoUP*, while outdated in some sections, is a wonderful place to
-start as you dive into Unix. Note that the author, Eric Raymond,
-has written some other classics such as *The Cathedral and the Bazaar*,
-which are worth checking out.
+*TAoUP*, while outdated in some sections, is a great place to
+establish some context for your journey into Unix. If you like it,
+you might check out other works by the author, Eric Raymond,
+particularly *The Cathedral and the Bazaar*.
 
 
-## Use Mnemonics to Remember Commands and Their Arguments
+## Learn the Backstory Behind Commands
 
 When learning the CLI you will run into strangely-named commands.
-At least, they will seem to be strangely-named... until you learn a
-bit about them. Once you have learned what quirk or abbreviation
-their name was based on, you'll be able to remember them more easily.
+At least, they will seem to be strangely-named at first. But once you
+learn how their name came about, everything will make sense.
 
 One example is the command `less`, which lets you scroll up and down
 through another command's output. At first it seems impossible to find
@@ -78,49 +82,46 @@ that `less` is the successor to `more`... because "less is more"!
 it doesn't allow you to scroll back up through the text.
 And of course `more` is called what it is because you use it when you
 want to read some of the input, and then read "more" when you are ready.
-Whether it's actually funny doesn't matter - "less is more"
-is a useful mnemonic to remember the command.
 
-Not every command has a joke in its name, but often there is a story or
-mnemonic there. So when you can't figure out why a command is named
-what it is, take some time to research it. It's worth it!
-
-- argument conventions with shell commands (-a -> all; -n -> number etc)
-  - there is a link to this somewhere
+The lesson is that oddly-named commands usually have some kind of backstory.
+Learning it will help you remember what the command does.
 
 
 ## Learn Common Minilanguages
 
-As you might have read in *The Art of Unix Programming*, minilanguages
-are a great way to solve a problem efficiently. Indeed, minilanguages
-are associated with many Unix programs. Here's a list of some of the
-minilanguages I find useful in my day-to-day work with Unix:
+Another point that is covered in *TAoUP* is that minilanguages
+are a great way to solve a problem efficiently. They're frequently used
+in the Unix world, not only in CLI programs, but also in programming
+languages. Here's a list of some of the minilanguages I find useful in my
+day-to-day work with Unix:
 
-  - regex (stick to Extended regex and stay away from language-specific
-    extensions)
-  - docopt
-  - datetime formatting
-  - C style string formatting
-  - backus-naur
-
-- used inside programming languages and unix tools
-
-
-
-## Use the `man` Command
-
-- Knowing about the documentation is vital for any pursuit, especially computers.
-  On Unix the dominant way of documenting the Unix-philosophy-adhering tools
-  is man pages.
-  - Concept of numbered binders referring to certain concepts (use `man man`
-    as a reference when you forget)
-  - To search the man pages for a concept use `man -k`
+  - regex (learn [extended regex](https://regular-expressions.mobi/posix.html?wlr=1)
+    and stay away from language-specific extensions, which are not portable
+    between tools and thus a waste of time to learn)
+  - [docopt](http://docopt.org/), a language for description of command interfaces
+  - datetime formatting as per the `date` command, which is used in several
+    programming languages
+  - C-style string formatting, which is also used in several programming languages
 
 
-## Learn How Unix Boots
+## Know and Use the `man` Command
 
-This is a more challenging topic, but if you can understand how Unix boots
-you'll have a good understanding of a variety of topics, including
-filesystems, the separation between kernel space and user space,
-the BIOS/UEFI, initrd/initramfs, the kernel ABI, and more.
-After you understand how Unix boots, you'll be all the more familiar with it.
+Unix descendants have extensive documentation which is accessed via the
+`man` command. It may seem archaic to read documentation on the command line
+rather than looking it up on the web, but it is often quicker to type the `man`
+command (not to mention the fact the `man` allows searching for a string in
+the documentation). 90% of the time I have a question about
+a specific thing on a Unix system, the answer can be found with a thorough
+search through a man page.
+
+`man` documents itself. So when you do `man man`, you'll see a bunch of info about it.
+One thing that is notable is that each section of the documentation is numbered.
+In the wild, you might the `ls` command referred to as `ls(1)`.
+The `(1)` part is the section covering that type of thing in the OS.
+So we have section 1 for CLI commands, section 5 for file formats and conventions,
+section 2 for system calls, and so on. For more information you can check out
+[this stackexchange question](https://unix.stackexchange.com/questions/3586/what-do-the-numbers-in-a-man-page-mean).
+
+Finally, as one of the answers says in that stackexchange question, you can
+search for man pages using `man -k`. This is a great way to
+find man pages when you're not 100% sure what you're looking for.
