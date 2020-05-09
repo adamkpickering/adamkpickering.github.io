@@ -265,3 +265,12 @@ My point is that the most fundamental design decisions in Ansible
 reflect the desire for it to be a declarative language.
 But in practice it needs procedural capabilities.
 
+
+Another point: you can have a variety of python interpreters on
+the hosts you're SSHing to, that can cause problems. You need some
+way of checking this/enforcing this. Ties into the larger theme
+of configuration drift.
+
+Another point: since ansible poor as a programming language, it is
+also poor for working around the deficiencies you inevitably run into.
+Glue code demands flexibility, and ansible does not provide it.
