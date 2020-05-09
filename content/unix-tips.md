@@ -1,7 +1,7 @@
 ---
 title: "Unix Tips"
 date: 2020-01-26T16:30:29-07:00
-draft: true
+draft: false
 ---
 
 If you're reading this, you're probably interested in Unix.
