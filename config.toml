@@ -3,3 +3,4 @@ languageCode = "en-us"
 title = "My New Hugo Site"
 uglyurls = true
 disableKinds = ["taxonomyTerm", "section"]
+enableGitInfo = true
