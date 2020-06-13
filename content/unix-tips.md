@@ -20,7 +20,7 @@ about Unix, I've noticed things that would have made the path easier had I known
 them to begin with. I've recorded them here so that others might benefit.
 
 
-## Read *The Art of Unix Programming*
+### Read *The Art of Unix Programming*
 
 [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/),
 which is available for free online,
@@ -67,7 +67,7 @@ you might check out other works by the author, Eric Raymond,
 particularly *The Cathedral and the Bazaar*.
 
 
-## Learn the Backstory Behind Commands
+### Learn the Backstory Behind Commands
 
 When learning the CLI you will run into strangely-named commands.
 At least, they will seem to be strangely-named at first. But once you
@@ -87,7 +87,7 @@ The lesson is that oddly-named commands usually have some kind of backstory.
 Learning it will help you remember what the command does.
 
 
-## Learn Common Minilanguages
+### Learn Common Minilanguages
 
 Another point that is covered in *TAoUP* is that minilanguages
 are a great way to solve a problem efficiently. They're frequently used
@@ -95,24 +95,31 @@ in the Unix world, not only in CLI programs, but also in programming
 languages. Here's a list of some of the minilanguages I find useful in my
 day-to-day work with Unix:
 
-  - regex (learn [extended regex](https://regular-expressions.mobi/posix.html?wlr=1)
-    and stay away from language-specific extensions, which are not portable
-    between tools and thus a waste of time to learn)
-  - [docopt](http://docopt.org/), a language for description of command interfaces
-  - datetime formatting as per the `date` command, which is used in several
-    programming languages
-  - C-style string formatting, which is also used in several programming languages
+- regex (learn [extended regex](https://regular-expressions.mobi/posix.html?wlr=1)
+  and stay away from language-specific extensions, which are not portable
+  between tools and thus a waste of time to learn)
+
+- [docopt](http://docopt.org/), a language for description of command interfaces
+
+- datetime formatting as per the `date` command, which is used in several
+  programming languages
+
+- C-style string formatting, which is also used in several programming languages
 
 
-## Know and Use the `man` Command
+### Use Documentation Effectively
 
-Unix descendants have extensive documentation which is accessed via the
+Like the other parts of Unix there are some non-obvious, but very helpful, things
+to know about documentation. The first thing to know is that appending
+`-h`, `--help`, or `help` to a command will cause it to print information
+about how the command is used, its options and other useful info.
+
+Additionally, Unix descendants have extensive documentation which is accessed via the
 `man` command. It may seem archaic to read documentation on the command line
 rather than looking it up on the web, but it is often quicker to type the `man`
 command (not to mention the fact the `man` allows searching for a string in
-the documentation). 90% of the time I have a question about
-a specific thing on a Unix system, the answer can be found with a thorough
-search through a man page.
+the documentation). 90% of the time I have a question about a specific thing
+on a Unix system, the answer can be found with a thorough search through a man page.
 
 `man` documents itself. So when you do `man man`, you'll see a bunch of info about it.
 One thing that is notable is that each section of the documentation is numbered.
