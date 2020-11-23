@@ -99,6 +99,8 @@ day-to-day work with Unix:
 
 - [docopt](http://docopt.org/), a language for description of command interfaces
 
+- [glob patterns](https://en.wikipedia.org/wiki/Glob_%28programming%29)
+
 - datetime formatting as per the `date` command, which is used in several
   programming languages
 
