@@ -1,7 +1,7 @@
 ---
 title: "A New OS"
 date: 2022-06-30T11:00:12-06:00
-draft: true
+draft: false
 ---
 
 
