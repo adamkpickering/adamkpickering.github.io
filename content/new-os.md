@@ -111,7 +111,7 @@ and working in the context of a superuser.
 they just go in their own container, and can access anything that appears in it.
 
 - It is easy to start fresh - you ensure your home directory is backed up and blow away
-the container. Then you can spin up a new container with the same home directory.**
+the container. Then you can spin up a new container with the same home directory.
 
 - There is no need for the user to have intimate knowledge of how the security
 facilities of Linux come together to provide them with this system. They just think
