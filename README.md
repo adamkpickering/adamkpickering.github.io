@@ -8,6 +8,6 @@ Run development server:
 
 `hugo server -D --bind <address> --port <port>`
 
-Build website (built files are in `public/`):
+Build website (built files are in `docs/`):
 
 `hugo`

@@ -4,3 +4,4 @@ title = "My New Hugo Site"
 uglyurls = true
 disableKinds = ["taxonomyTerm", "section", "RSS"]
 enableGitInfo = true
+publishDir = "docs"

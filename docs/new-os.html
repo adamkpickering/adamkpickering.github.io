@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adam Pickering</title>
+  </head>
+  <body>
+    
+<header>
+  <a href="/">Home</a>
+</header>
+<main>
+	<hgroup>
+		<h1>A New OS</h1>
+		<h4>Last updated on July 4, 2022</h4>
+	</hgroup>
+<p>For a while now I have been mulling over an idea for a Linux distribution.
+While I have been learning concepts that are relevant to it, I haven&rsquo;t had the chance to flesh it out.
+So when it came time for the annual SUSE hack week, I figured it would be a fun thing to explore.
+This post is the result of that exploration.
+It was put together in somewhat of a rush, and I&rsquo;m talking about complex stuff
+that I don&rsquo;t understand completely, so my ideas are half-baked in many places.
+But, it should get the main idea across.
+If you have any comments please send them my way!</p>
+<p>Oh, and a caveat: according to <a href="https://www.freedesktop.org/wiki/Software/systemd/ContainerInterface/">this freedesktop.org page</a> we can&rsquo;t rely on
+containers for security purposes yet. So for now, anything built in the
+pattern described here is experimental only!</p>
+<h2 id="motivation">Motivation</h2>
+<p>I have always disliked Unix&rsquo;s fundamental security model.
+By &ldquo;fundamental security model&rdquo;, I mean the use of users, groups and
+file modes to restrict access to files. For one, it always seems to be
+getting in the way. There is no clean separation between the domain of
+unprivileged users and privileged users. For example, many routine tasks I
+might do as a regular user require running a command as root,
+i.e. installing a program using the system package manager.
+I am constantly having to run <code>sudo !!</code>. I can just do a <code>sudo su</code> and run
+everything as root, but that can be risky if I forget I&rsquo;m working as root.</p>
+<p>Another problem is that &ldquo;users&rdquo; end up being created for daemons that we want to lock down.
+Of course, these users are not &ldquo;users&rdquo; in the sense that most would think of them -
+in my mind at least, the term &ldquo;user&rdquo; implies a human user. So we have, for example,
+/etc/passwd, which contains a large number of entries, only a few of which correspond to human users.
+Yet a reasonable person would assume that it would contain only the three or four entries
+that actually pertain to human users.</p>
+<p>I&rsquo;m not the only one that has noticed the shortcomings of this security model -
+the existence of SELinux, AppArmor, file ACLs, capabilities and seccomp are evidence of this.
+These solutions are nice to have, but when looked at as a whole they are too low-level
+for everyday use. They lack ease of use; they lack a unified way of thinking.
+For example, if I want to lock down a daemon, how exactly do I do that?
+Do I create a user and group for it, and restrict file permissions so that
+only it can access the files that pertain to it? What if there is a misconfigured
+file elsewhere, that it could then access if compromised? Do I dive into SELinux
+(which seems complicated) and come up with some special policies for it?
+There is no clear paradigm for how security is done.</p>
+<p>Modern Linux distributions have another problem: they get cluttered over time.
+As you install programs, configure them, remove them and so on, a lot of cruft accumulates.
+Some programs are bigger cuplrits than others (looking at you, Python).
+I often feel a desire to start fresh, but the only proper way to do that is to
+wipe your hard disk and make a fresh install.</p>
+<p>Again, other people have noticed this problem.
+Distributions that fix it have been created.
+Usually they do so by completely changing the paradigm of Linux system administration.
+Some examples of these distributions are NixOS and GoboLinux.
+But these distros have a problem: they aren&rsquo;t popular.
+It seems that if you want to actually solve this problem, you have to find
+a way to do it that doesn&rsquo;t involve making radical changes to peoples&rsquo; workflows.</p>
+<h2 id="the-idea">The Idea</h2>
+<p>You may have guessed where I&rsquo;m going with this: containers.
+Rather than thinking of a Linux system as one big system containing all
+users, I want you to think of a Linux system as a hierarchy of containers.
+In this setup, each container has exactly one user.
+At the root of the hierarchy is the &ldquo;root container&rdquo;. This container is
+identical to Linux systems as you know them, except that the only user is root.
+Then for each user, there is a container that is a child container
+of the root container (I will refer to these as &ldquo;user containers&rdquo;).
+Each daemon has its own container as well.
+Each user/daemon container may have their own children, and so on.</p>
+<p>But there is a problem: how does a user make changes to the root container?
+This is something that must be possible - kernel modules must be loaded,
+the boot process must be tweaked, iptables must be configured, and so on.
+The solution to this is to provide a controlled mechanism for &ldquo;breaking out&rdquo; of
+the current user container and into its parent.</p>
+<p>In order to implement this mechanism, you need two things: a daemon running
+in the parent container, and a CLI tool that the user runs in the child container
+when they want to get into the parent container.
+The daemon is responsible for creating and managing all containers that are children
+of the container in which it runs.
+Upon creation of a child container, it inserts a unix domain socket into the child container&rsquo;s rootfs.
+It then monitors the socket, implementing a protocol that allows the user to prove they have
+permission to access the parent container.
+If they are able to satisfy the conditions of the protocol, the user gets access to a
+shell prompt that is tunnelled through the unix domain socket.</p>
+<h2 id="how-is-this-better">How is this better?</h2>
+<p>Turning the OS into a hierarchy of containers is a powerful paradigm
+and provides a number of benefits:</p>
+<ul>
+<li>
+<p>For most tasks, the user isn&rsquo;t burdened by the need to call <code>sudo</code>.
+They don&rsquo;t have to understand what privileges are appropriate for a given file,
+or what <code>umask</code> is: if they can see the file, they can do whatever they want to it.</p>
+</li>
+<li>
+<p>There is a clear separation between working in the context of a regular user,
+and working in the context of a superuser.</p>
+</li>
+<li>
+<p>There is no need to abuse the concept of users to isolate daemons -
+they just go in their own container, and can access anything that appears in it.</p>
+</li>
+<li>
+<p>It is easy to start fresh - you ensure your home directory is backed up and blow away
+the container. Then you can spin up a new container with the same home directory.</p>
+</li>
+<li>
+<p>There is no need for the user to have intimate knowledge of how the security
+facilities of Linux come together to provide them with this system. They just think
+something along the lines of, &ldquo;A is in a separate container from B,
+so they cannot mess with each other.&rdquo;</p>
+</li>
+<li>
+<p>Performance is not impacted because all containers are talking to the same kernel.</p>
+</li>
+</ul>
+<p>Most importantly, these benefits come while keeping a number of things the same.
+For one, the filesystem layout is kept the same. Every container can adhere to the
+FHS&hellip; or not, all at the user&rsquo;s discretion.
+Also, packages are managed in the same way: nothing changes here other than
+the removal of the need to put <code>sudo</code> before every invocation of the package manager.
+The only real difference from traditional Linux distros is the way you escalate privileges:
+<code>sudo</code> is replaced by the CLI tool that is used to get into the parent container.
+Minimizing differences will maximize adoption.</p>
+<h2 id="components">Components</h2>
+<h3 id="the-daemon">The Daemon</h3>
+<p>The main job of the daemon is to be a &ldquo;Container Manager&rdquo; as described on
+<a href="https://www.freedesktop.org/wiki/Software/systemd/writing-vm-managers/">this link on freedesktop.org</a>. It manages all child containers of the container
+in which it runs, and registers them with with <code>systemd-machined</code> so that we can
+use the usual tools (<code>ps</code>, <code>systemctl</code>) to get info about child containers.
+The daemon runs as a systemd service and maintains a unix domain socket
+over which the CLI, as invoked in its container, can talk to it.
+It also maintains and listens on a unix domain socket for each child container,
+to facilitate users in that container escalating to the parent container as
+described above.</p>
+<h3 id="the-cli">The CLI</h3>
+<p>The CLI is just an interface to the daemon. It allows the user to interact with
+the daemon in order to:</p>
+<ul>
+<li>get a shell in the parent container</li>
+<li>get, create, list, update, and remove containers</li>
+<li>start, stop and restart containers</li>
+<li>get a shell inside a child container</li>
+</ul>
+<h3 id="pam-module">PAM Module</h3>
+<p>Deals with anything related to user/daemon containers and logins.
+There is more work to be done here to figure out how this should work.</p>
+<h2 id="other-miscellanous-points">Other Miscellanous Points</h2>
+<p>This is where I put my really undeveloped ideas. It is all subject to change!</p>
+<h3 id="login-process">Login Process</h3>
+<p>This is a half-baked thinking-through of how the login process might work.
+I just learned about PAM, so it&rsquo;s probably wrong, and definitely incomplete.</p>
+<ol>
+<li>Keyboard input on TTY.</li>
+<li><code>getty</code> invokes a special version of <code>login</code>.</li>
+<li><code>login</code> calls PAM modules. One gets called that authenticates the user.
+Another gets called that performs the necessary steps to change the environment
+of the process so that it is inside the relevant user&rsquo;s user container.</li>
+</ol>
+<h3 id="future-directionsmore-questions">Future Directions/More Questions</h3>
+<ul>
+<li>How does networking work?</li>
+<li>How does a user container work with a GUI?
+<ul>
+<li>Can each user container have its own GUI setup?</li>
+<li>Should we make access to parent containers through CLI only?</li>
+</ul>
+</li>
+<li>How <em>exactly</em> does the login process work?
+<ul>
+<li>Via TTY?</li>
+<li>Via <code>sshd</code>?</li>
+<li>With a GUI?</li>
+<li>For future, unanticipated programs?</li>
+</ul>
+</li>
+<li>How many of the ideas from <a href="https://0pointer.net/blog/fitting-everything-together.html">Fitting Everything Together</a> can we implement? Particularly:
+<ul>
+<li>immutability of /usr/</li>
+<li>use of <code>systemd-homed</code></li>
+</ul>
+</li>
+<li>Is a user container persisted in its parent container as an entire rootfs, or just as
+that user&rsquo;s home directory?</li>
+<li>What parts of systemd need to be cut out? Which parts conflict with these ideas?</li>
+<li>What does the daemon use for a container runtime?</li>
+</ul>
+
+</main>
+<footer>Copyright &copy; 2020 Adam Pickering</footer>
+
+  </body>
+</html>

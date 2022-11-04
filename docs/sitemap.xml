@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://example.org/new-os.html</loc>
+    <lastmod>2022-07-04T10:15:43-06:00</lastmod>
+  </url><url>
+    <loc>http://example.org/unix-tips.html</loc>
+    <lastmod>2020-11-22T21:24:44-07:00</lastmod>
+  </url><url>
+    <loc>http://example.org/about.html</loc>
+    <lastmod>2020-05-09T17:20:17-06:00</lastmod>
+  </url><url>
+    <loc>http://example.org/</loc>
+    <lastmod>2022-07-03T20:29:58-06:00</lastmod>
+  </url>
+</urlset>
