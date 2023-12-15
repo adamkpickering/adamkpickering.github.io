@@ -10,4 +10,4 @@ draft: false
 
 [Unix Tips for Newbies](/unix-tips.html)  
 [A New OS](/new-os.html)  
-[Favourite Blogs](/favourite-blogs.html)  
+[Notable Blogs](/notable-blogs.html)  
