@@ -9,4 +9,5 @@ draft: false
 [Github](https://github.com/adamkpickering/)  
 
 [Unix Tips for Newbies](/unix-tips.html)  
-[A New OS](/new-os.html)
+[A New OS](/new-os.html)  
+[Notable Blogs](/notable-blogs.html)  
