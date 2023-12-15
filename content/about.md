@@ -4,9 +4,9 @@ date: 2019-12-30T15:46:29-07:00
 draft: false
 ---
 
-I live in Edmonton, Alberta, Canada.
-I'm interested in open-source sofware and hardware.
-My other interests include film, rock climbing and cooking.
+Hello, my name is Adam Pickering and I live in Edmonton, Alberta, Canada.
+I work as a software engineer, and am interested in the ways technology
+affects us as individuals and as a society.
 
 To contact me you can use the email:
 
