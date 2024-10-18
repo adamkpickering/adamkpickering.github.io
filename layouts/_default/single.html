@@ -1,13 +1,13 @@
 {{ define "main" }}
 <header>
-  <a href="/">Home</a>
+	<a href="/">Home</a>
 </header>
 <main>
 	<hgroup>
 		<h1>{{ .Title }}</h1>
 		<h4>Last updated on {{ .Lastmod.Format "January 2, 2006" }}</h4>
 	</hgroup>
-{{ .Content }}
+	{{ .Content }}
 </main>
-<footer>Copyright &copy; 2020 Adam Pickering</footer>
-{{ end}}
+<footer>Copyright &copy; {{ now.Format "2006" }} Adam Pickering</footer>
+{{ end }}
