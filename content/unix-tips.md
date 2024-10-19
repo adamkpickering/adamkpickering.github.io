@@ -1,7 +1,7 @@
 ---
 title: "Unix Tips"
+templateName: "post.gotmpl"
 date: 2020-01-26T16:30:29-07:00
-draft: false
 ---
 
 If you're reading this, you're probably interested in Unix.  Or more likely

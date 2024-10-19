@@ -1,7 +1,7 @@
 ---
 title: "Notable Blogs"
+templateName: "post.gotmpl"
 date: 2022-12-07T20:48:48-07:00
-draft: false
 ---
 
 [Joel Spolsky](https://www.joelonsoftware.com/)  

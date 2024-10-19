@@ -1,7 +1,7 @@
 ---
 title: "About"
+templateName: "post.gotmpl"
 date: 2019-12-30T15:46:29-07:00
-draft: false
 ---
 
 Hello, my name is Adam Pickering and I live in Edmonton, Alberta, Canada.
