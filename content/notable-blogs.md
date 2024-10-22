@@ -9,7 +9,7 @@ date: 2022-12-07T20:48:48-07:00
 [Dave Cheney](https://dave.cheney.net/2019/09)  
 [Yossi Kreinin](https://yosefk.com/blog/)  
 [Martin Fowler](https://martinfowler.com/bliki/)  
-[Xe Laso](https://xeiaso.net/blog)  
+[Xe Iaso](https://xeiaso.net/blog)  
 [Dan Luu](https://danluu.com/)  
 [Jamie Brandon](https://www.scattered-thoughts.net/)  
 [Drew DeVault](https://drewdevault.com/)  
