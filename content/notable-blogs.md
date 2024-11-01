@@ -1,6 +1,6 @@
 ---
-title: "Notable Blogs"
-templateName: "post.gotmpl"
+Title: "Notable Blogs"
+TemplateName: "post.gotmpl"
 date: 2022-12-07T20:48:48-07:00
 ---
 

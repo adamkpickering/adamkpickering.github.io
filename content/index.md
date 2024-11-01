@@ -1,5 +1,5 @@
 ---
-templateName: "home.gotmpl"
+TemplateName: "home.gotmpl"
 ---
 
 Welcome! I am Adam Pickering, a software engineer that likes to make complex

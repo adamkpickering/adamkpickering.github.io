@@ -1,6 +1,6 @@
 ---
-title: "Unix Tips"
-templateName: "post.gotmpl"
+Title: "Unix Tips"
+TemplateName: "post.gotmpl"
 date: 2020-01-26T16:30:29-07:00
 ---
 
