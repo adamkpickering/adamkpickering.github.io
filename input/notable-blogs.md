@@ -1,7 +1,8 @@
 ---
 Title: "Notable Blogs"
 TemplateName: "post.gotmpl"
-date: 2022-12-07T20:48:48-07:00
+Published: 2022-12-07
+LastModified: 2024-10-21
 ---
 
 [Joel Spolsky](https://www.joelonsoftware.com/)  
