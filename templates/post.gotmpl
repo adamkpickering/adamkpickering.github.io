@@ -1,0 +1,12 @@
+{{ define "time" -}}
+<time datetime="{{ .Format "2006-01-02"}}">{{ .Format "January 2, 2006" }}</time>
+{{ end -}}
+{{ template "header.gotmpl" -}}
+<h1>{{ .Page.Metadata.Title }}</h1>
+{{ if not .Page.Metadata.LastModified.IsZero }}
+<h4>Last modified {{ template "time" .Page.Metadata.LastModified }}</h4>
+{{ else if not .Page.Metadata.Published.IsZero }}
+<h4>Published {{ template "time" .Page.Metadata.Published }}</h4>
+{{ end }}
+{{ .Page.Content }}
+{{ template "footer.gotmpl" -}}

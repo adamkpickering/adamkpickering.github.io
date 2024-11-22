@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="/style.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adam Pickering</title>
-  </head>
-  <body>
-    
-<header>
-  <a href="/">Home</a>
-</header>
-<main>
-	<hgroup>
-		<h1>Unix Tips</h1>
-		<h4>Last updated on November 22, 2020</h4>
-	</hgroup>
-<p>If you&rsquo;re reading this, you&rsquo;re probably interested in Unix.  Or more likely
+
+<head>
+ <link rel="stylesheet" href="/static/style.css">
+ <link rel="icon" href="/static/favicon.ico">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+ <header>
+  <div>
+  Adam Pickering
+  </div>
+  <nav>
+   <a href="/">Home</a>
+   &nbsp
+   <a href="https://github.com/adamkpickering/">Github</a>
+   &nbsp
+   <a href="https://ca.linkedin.com/in/adamkpickering">LinkedIn</a>
+  </nav>
+ </header>
+ <main>
+<p>If you're reading this, you're probably interested in Unix.  Or more likely
 Linux, which is a descendant of Unix. Congratulations - Unix is both the
 oldest technical tradition in computing, and the dominant one. An
-understanding of Linux, and Unix, is very handy in today&rsquo;s computerized world,
-and you&rsquo;ll be better for having it.</p>
+understanding of Linux, and Unix, is very handy in today's computerized world,
+and you'll be better for having it.</p>
 <p>But Unix is more of a toolkit than it is a complete, functioning system.
 On one hand, this buys its users power and flexibility. But on the other hand,
 this gives it a steep learning curve. Newbies can have a hard time figuring
-out how things are done in the Unix world. But don&rsquo;t get discouraged! As I
-have learned (and continue to learn) about Unix, I&rsquo;ve noticed things that
-would have made the path easier had I known them to begin with. I&rsquo;ve recorded
+out how things are done in the Unix world. But don't get discouraged! As I
+have learned (and continue to learn) about Unix, I've noticed things that
+would have made the path easier had I known them to begin with. I've recorded
 them here so that others might benefit.</p>
-<h3 id="read-the-art-of-unix-programming">Read <em>The Art of Unix Programming</em></h3>
+<h3>Read <em>The Art of Unix Programming</em></h3>
 <p><a href="http://www.catb.org/esr/writings/taoup/">The Art of Unix Programming</a>,
 which is available for free online, is an excellent book for those looking
 to learn about Unix. While it is an old book as books on computing go
@@ -47,8 +52,8 @@ of Unix on the desktop, and containers.</p>
 <p>Part II is about the design choices that were made in Unix.
 This part is great for getting you to think critically about
 why Unix is the way it is, and why it is so successful.
-It introduces you to the famous &ldquo;Unix philosophy&rdquo;, and
-discusses design patterns that you&rsquo;ll find in the Unix world.
+It introduces you to the famous &quot;Unix philosophy&quot;, and
+discusses design patterns that you'll find in the Unix world.
 Finally it introduces you to
 <a href="http://catb.org/~esr/writings/taoup/html/ch10s05.html">argument naming conventions</a>,
 which are helpful as a mnemonic device.</p>
@@ -59,32 +64,32 @@ should prefer open-source software whenever you have the choice.</p>
 <p>Finally, Part IV discusses the Unix community, which is an important
 but easily-overlooked part of the picture. It also discusses
 standards, and their importance. Finally it discusses
-why Unix is still around in its present format, and why it hasn&rsquo;t
+why Unix is still around in its present format, and why it hasn't
 been replaced by anything that has been developed since.</p>
 <p><em>TAoUP</em>, while outdated in some sections, is a great place to
 establish some context for your journey into Unix. If you like it,
 you might check out other works by the author, Eric Raymond,
 particularly <em>The Cathedral and the Bazaar</em>.</p>
-<h3 id="learn-the-backstory-behind-commands">Learn the Backstory Behind Commands</h3>
+<h3>Learn the Backstory Behind Commands</h3>
 <p>When learning the CLI you will run into strangely-named commands.
 At least, they will seem to be strangely-named at first. But once you
 learn how their name came about, everything will make sense.</p>
 <p>One example is the command <code>less</code>, which lets you scroll up and down
-through another command&rsquo;s output. At first it seems impossible to find
+through another command's output. At first it seems impossible to find
 a reason that <code>less</code> is named what it is. But if you read a bit about
-the <a href="https://en.wikipedia.org/wiki/Less_(Unix)">history</a> you&rsquo;ll discover
-that <code>less</code> is the successor to <code>more</code>&hellip; because &ldquo;less is more&rdquo;!
+the <a href="https://en.wikipedia.org/wiki/Less_(Unix)">history</a> you'll discover
+that <code>less</code> is the successor to <code>more</code>... because &quot;less is more&quot;!
 <code>more</code> does the same thing as <code>less</code>, with the exception that
-it doesn&rsquo;t allow you to scroll back up through the text.
+it doesn't allow you to scroll back up through the text.
 And of course <code>more</code> is called what it is because you use it when you
-want to read some of the input, and then read &ldquo;more&rdquo; when you are ready.</p>
+want to read some of the input, and then read &quot;more&quot; when you are ready.</p>
 <p>The lesson is that oddly-named commands usually have some kind of backstory.
 Learning the backstory will help you remember what the command does.</p>
-<h3 id="learn-common-minilanguages">Learn Common Minilanguages</h3>
+<h3>Learn Common Minilanguages</h3>
 <p>Another point that is covered in <em>TAoUP</em> is that minilanguages
-are a great way to solve a problem efficiently. They&rsquo;re frequently used
+are a great way to solve a problem efficiently. They're frequently used
 in the Unix world, not only in CLI programs, but also in programming
-languages. Here&rsquo;s a list of some of the minilanguages I find useful in my
+languages. Here's a list of some of the minilanguages I find useful in my
 day-to-day work with Unix:</p>
 <ul>
 <li>
@@ -106,7 +111,7 @@ programming languages</p>
 <p>C-style string formatting, which is also used in several programming languages</p>
 </li>
 </ul>
-<h3 id="use-documentation-effectively">Use Documentation Effectively</h3>
+<h3>Use Documentation Effectively</h3>
 <p>Like the other parts of Unix there are some non-obvious, but very helpful, things
 to know about documentation. The first thing to know is that appending
 <code>-h</code>, <code>--help</code>, or <code>help</code> to a command will cause it to print information
@@ -117,7 +122,7 @@ rather than looking it up on the web, but it is often quicker to type the <code>
 command (not to mention the fact the <code>man</code> allows searching for a string in
 the documentation). 90% of the time I have a question about a specific thing
 on a Unix system, the answer can be found with a thorough search through a man page.</p>
-<p><code>man</code> documents itself. So when you do <code>man man</code>, you&rsquo;ll see a bunch of info about it.
+<p><code>man</code> documents itself. So when you do <code>man man</code>, you'll see a bunch of info about it.
 One thing that is notable is that each section of the documentation is numbered.
 In the wild, you might the <code>ls</code> command referred to as <code>ls(1)</code>.
 The <code>(1)</code> part is the section covering that type of thing in the OS.
@@ -126,20 +131,20 @@ file formats and conventions, and so on. For more information you can check out
 <a href="https://unix.stackexchange.com/questions/3586/what-do-the-numbers-in-a-man-page-mean">this stackexchange question</a>.</p>
 <p>Finally, as one of the answers says in that stackexchange question, you can
 search for man pages using <code>man -k</code>. This is a great way to
-find man pages when you&rsquo;re not 100% sure what you&rsquo;re looking for.</p>
-<h3 id="learn-and-use-vim">Learn and Use Vim</h3>
+find man pages when you're not 100% sure what you're looking for.</p>
+<h3>Learn and Use Vim</h3>
 <p><a href="https://www.vim.org/">Vim</a> is a popular program that allows you to edit text
-on the command line. I won&rsquo;t explain everything about it here - if you&rsquo;re interested,
-there are plenty of resources about it on the internet. Instead, I&rsquo;ll tell you how
+on the command line. I won't explain everything about it here - if you're interested,
+there are plenty of resources about it on the internet. Instead, I'll tell you how
 it helps you learn and become productive with Unix.</p>
 <p>One reason to learn <code>vim</code> is that it is consistent with the Unix philosophy of
 many small tools that each do one thing well, and can be combined in intuitive ways.
 <code>vim</code> is good for editing text, which of course is a very common activity on Unix
 systems. <code>vim</code> can also be combined with other programs - blocks of text can be
 piped to external programs, and results from running external programs can be read in.
-As you learn <code>vim</code>, you&rsquo;ll discover that it, along with the rest of the Unix command
+As you learn <code>vim</code>, you'll discover that it, along with the rest of the Unix command
 line, provides a flexible and powerful development environment.</p>
-<p>In keeping with the &ldquo;integration with other tools&rdquo; theme, <code>vim</code> also contains
+<p>In keeping with the &quot;integration with other tools&quot; theme, <code>vim</code> also contains
 patterns that appear in other Unix tooling. This is notable because once you learn
 them, they become part of a body of knowledge that makes you proficient with Unix.
 Here a few I can think of:</p>
@@ -152,7 +157,7 @@ scheme is replicated in <code>less</code> and <code>man</code>.</p>
 <li>
 <p>In <code>vim</code>, search and replace is done by writing a command, something like
 <code>:%s/oldstring/newstring/g</code>. If you learn about <code>sed</code>, which is a common tool
-used for editing text in shell scripts, you&rsquo;ll notice that the syntax is
+used for editing text in shell scripts, you'll notice that the syntax is
 quite similar.</p>
 </li>
 <li>
@@ -162,8 +167,11 @@ to learn and maintain your understanding of regex.</p>
 </li>
 </ul>
 
-</main>
-<footer>Copyright &copy; 2020 Adam Pickering</footer>
 
-  </body>
+ </main>
+ <footer>
+ Copyright &copy; 2024 Adam Pickering
+ </footer>
+</body>
+
 </html>

@@ -1,7 +1,8 @@
 ---
-title: "A New OS"
-date: 2022-06-30T11:00:12-06:00
-draft: false
+Title: "A New OS"
+TemplateName: "post.gotmpl"
+Published: 2022-06-30
+LastModified: 2022-07-04
 ---
 
 

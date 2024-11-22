@@ -1,7 +1,8 @@
 ---
-title: "Unix Tips"
-date: 2020-01-26T16:30:29-07:00
-draft: false
+Title: "Unix Tips for Newbies"
+TemplateName: "post.gotmpl"
+Published: 2020-01-26
+LastModified: 2020-11-22
 ---
 
 If you're reading this, you're probably interested in Unix.  Or more likely
