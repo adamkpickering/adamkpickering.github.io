@@ -1,3 +1,4 @@
-content: content
-output: output
-templates: templates
+---
+Input: input
+Output: docs
+Templates: templates
